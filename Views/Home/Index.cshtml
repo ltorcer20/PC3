@@ -1,8 +1,46 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<Home>
+@{
+    ViewData["Title"] = "Solicitudes registradas";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center" style="margin-top: 25px;">
+    <h1 class="display-4">Registro de Solicitudes</h1>
+</div>
+
+<div style="margin-top: 30px; text-align: center;">
+    @if (Model.Count == 0)
+    {
+        <strong>No se encuentran productos registrados hasta el momento.</strong>
+        <strong style="color: red;">Registrar Producto </strong>
+        <a asp-controller="Home" asp-action="Producto" >Aqui</a>
+    }
+</div>
+
+<div style="margin-top: 30px;">
+    <div class="row">
+        @foreach (var productos in Model)
+        {
+            <div class="col-lg-4">
+                <div class="card" style="width: 18rem; margin-bottom: 20px;">
+                    <img src="@productos.url_foto" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">@productos.nombre</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Descripción: </strong>@productos.descripcion</li>
+                            <li class="list-group-item"><strong>Precio: </strong>@productos.precio</li>
+                            <li class="list-group-item"><strong>Celular: </strong>@productos.celular</li>
+                            <li class="list-group-item"><strong>Lugar: </strong>@productos.lugar</li>
+                            <li class="list-group-item"><strong>Usuario: </strong>@productos.usuario</li>
+                        </ul>
+                        <div class="card-body" style="text-align: center;">
+                            <form action="/Home/Eliminar" method="POST">
+                                <input type="hidden" name="Id" value="@productos.id">
+                                <button class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
