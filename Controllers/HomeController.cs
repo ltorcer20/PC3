@@ -24,8 +24,8 @@ namespace PC3.Controllers
         public IActionResult Index()
         {
             DateTime fecha = DateTime.Today.AddDays(-7);
-            var Producto = _context.Productos.Where(x => x.Fecha == fecha).ToList();
-            return View(Producto);
+            var productos = _context.Productos.ToList();
+            return View(productos);
         }
 
         public IActionResult Producto()
