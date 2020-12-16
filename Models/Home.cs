@@ -29,5 +29,9 @@ namespace PC3
 
         [Display(Name="Nombre del usuario")]
         public string usuario { get; set; }
+
+       
+        [Display(Name="Fecha de Registro")]
+        public DateTime Fecha { get; set; }
     }
 }
